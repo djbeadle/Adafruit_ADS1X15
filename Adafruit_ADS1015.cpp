@@ -42,7 +42,14 @@
  #include "WProgram.h"
 #endif
 
-#include <Wire.h>
+// If we're using an UNO use the standard library for i2c:
+#if defined(__AVR_ATmega328P__) || defined(__AVR_ATmega168__)
+ #include <Wire.h>
+// Else we're probably using a Teensy. (Because that's the only other
+// microprocessor I'm working with)
+#else
+ #include <i2c_t3.h>
+#endif	
 
 #include "Adafruit_ADS1015.h"
 
